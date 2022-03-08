@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 const polotno = require("polotno");
 const { PolotnoContainer, SidePanelWrap, WorkspaceWrap } = polotno;
-w;
+
 const store = createStore();
 store.addPage();
 
