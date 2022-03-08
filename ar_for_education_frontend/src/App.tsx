@@ -3,13 +3,13 @@ import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 
 import AppHeader from "./components/AppHeader";
-import KonvaContainer from "./components/KonvaContainer";
+import PolotnoWrapper from "./components/PolotnoWrapper";
 
 // Move this to a separate file?
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background-color: #0A1929;
+    // background-color: #0A1929;
   }
 `;
 
@@ -18,7 +18,7 @@ function App() {
     <RecoilRoot>
       <GlobalStyle />
       <AppHeader />
-      <KonvaContainer />
+      <PolotnoWrapper />
     </RecoilRoot>
   );
 }
