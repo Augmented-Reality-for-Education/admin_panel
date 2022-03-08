@@ -1,4 +1,3 @@
-import { mainModule } from "process";
 import React from "react";
 import { Stage, Layer, Star } from "react-konva";
 import styled from "styled-components";

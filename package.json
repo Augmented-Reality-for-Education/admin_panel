@@ -8,6 +8,7 @@
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@types/styled-components": "^5.1.23",
     "konva": "^8.3.2",
+    "polotno": "^0.39.14",
     "react-konva": "^17.0.2-5",
     "recoil": "^0.6.1",
     "styled-components": "^5.3.3"

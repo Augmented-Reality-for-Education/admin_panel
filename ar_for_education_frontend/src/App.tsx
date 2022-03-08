@@ -3,7 +3,7 @@ import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 
 import AppHeader from "./components/AppHeader";
-import KonvaContainer from "./components/KonvaContainer";
+import PolotnoContainer from "./components/PolotnoContainer";
 
 // Move this to a separate file?
 const GlobalStyle = createGlobalStyle`
@@ -18,7 +18,7 @@ function App() {
     <RecoilRoot>
       <GlobalStyle />
       <AppHeader />
-      <KonvaContainer />
+      <PolotnoContainer />
     </RecoilRoot>
   );
 }
