@@ -25,6 +25,11 @@ const Wrapper = styled.div`
   & .polotno-side-panel-tab:nth-of-type(6) {
     display: none;
   }
+
+  // Hide page buttons
+  & div.polotno-workspace-container > div > div > div:nth-child(2) {
+    display: none;
+  }
 `;
 
 export const PolotnoWrapper = () => {
