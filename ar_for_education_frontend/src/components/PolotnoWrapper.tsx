@@ -17,6 +17,14 @@ const Wrapper = styled.div`
   position: absolute;
   width: 100%;
   height: calc(100% - 64px);
+
+  // Hide side panel buttons we are not using
+  & .polotno-side-panel-tab:first-of-type,
+  & .polotno-side-panel-tab:last-of-type,
+  & .polotno-side-panel-tab:nth-of-type(3),
+  & .polotno-side-panel-tab:nth-of-type(6) {
+    display: none;
+  }
 `;
 
 export const PolotnoWrapper = () => {
@@ -27,7 +35,7 @@ export const PolotnoWrapper = () => {
           <SidePanel store={store} />
         </SidePanelWrap>
         <WorkspaceWrap>
-          <Toolbar store={store} downloadButtonEnabled />
+          <Toolbar store={store} />
           <Workspace store={store} />
           <ZoomButtons store={store} />
         </WorkspaceWrap>
