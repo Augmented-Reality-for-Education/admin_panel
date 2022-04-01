@@ -4,14 +4,11 @@ import { Toolbar } from "polotno/toolbar/toolbar";
 import { ZoomButtons } from "polotno/toolbar/zoom-buttons";
 import { SidePanel } from "polotno/side-panel";
 import { Workspace } from "polotno/canvas/workspace";
-import { createStore } from "polotno/model/store";
 import styled from "styled-components";
+import usePolotnoStore from "../hooks/usePolotnoStore";
 
 const polotno = require("polotno");
 const { PolotnoContainer, SidePanelWrap, WorkspaceWrap } = polotno;
-
-const store = createStore();
-store.addPage();
 
 const Wrapper = styled.div`
   position: absolute;
@@ -33,6 +30,8 @@ const Wrapper = styled.div`
 `;
 
 export const PolotnoWrapper = () => {
+  const { store } = usePolotnoStore();
+
   return (
     <Wrapper>
       <PolotnoContainer>

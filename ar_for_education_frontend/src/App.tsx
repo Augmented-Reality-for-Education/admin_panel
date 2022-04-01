@@ -4,6 +4,7 @@ import { createGlobalStyle } from "styled-components";
 
 import AppHeader from "./components/AppHeader";
 import PolotnoWrapper from "./components/PolotnoWrapper";
+import PolotnoStoreProvider from "./providers/PolotnoStoreProvider";
 
 // Move this to a separate file?
 const GlobalStyle = createGlobalStyle`
@@ -16,9 +17,11 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <RecoilRoot>
-      <GlobalStyle />
-      <AppHeader />
-      <PolotnoWrapper />
+      <PolotnoStoreProvider>
+        <GlobalStyle />
+        <AppHeader />
+        <PolotnoWrapper />
+      </PolotnoStoreProvider>
     </RecoilRoot>
   );
 }
