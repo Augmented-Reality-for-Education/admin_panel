@@ -10,12 +10,15 @@ const createEmptyStore = () => {
 export const PolotnoStoreContext = createContext({
   id: undefined as number | undefined,
   setId: (id: number | undefined) => {},
+  name: undefined as string | undefined,
+  setName: (name: string | undefined) => {},
   store: createEmptyStore(),
   resetStore: () => {},
 });
 
 const PolotnoStoreProvider: FC = ({ children }) => {
   const [id, setId] = useState<number | undefined>(undefined);
+  const [name, setName] = useState<string | undefined>("");
   const [store, setStore] = useState(createEmptyStore());
 
   const resetStore = () => {
@@ -23,7 +26,7 @@ const PolotnoStoreProvider: FC = ({ children }) => {
     setId(undefined);
   };
 
-  const context = { id, setId, store, resetStore };
+  const context = { id, setId, name, setName, store, resetStore };
 
   return (
     <PolotnoStoreContext.Provider value={context}>
