@@ -1,5 +1,4 @@
 import { FC } from "react";
-
 import {
   AppBar,
   Button,
@@ -10,6 +9,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import usePolotnoStore from "../hooks/usePolotnoStore";
+import { postUserDesign } from "../axios/service";
+import { UserDesign } from "../types";
 
 const AppBarWrapper = styled(AppBar)`
   background-color: #001d3d;
@@ -26,6 +27,12 @@ const StyledTextField = styled(TextField)`
     text-align: center;
   }
 `;
+
+const postUserDesignHandler = async (name: string, dataURL: string) => {
+  const userDesign: UserDesign = { name, dataURL };
+  const response = await postUserDesign(userDesign);
+  console.log(response);
+};
 
 const AppHeader: FC<any> = () => {
   const { id, store, name, setName } = usePolotnoStore();
@@ -44,7 +51,12 @@ const AppHeader: FC<any> = () => {
           />
           <Button
             variant="contained"
-            onClick={async () => console.log(await store.toDataURL())}
+            onClick={async () =>
+              postUserDesignHandler(
+                name || "Untitled design",
+                await store.toDataURL()
+              )
+            }
           >
             {id ? "Update" : "Save new image"}
           </Button>
