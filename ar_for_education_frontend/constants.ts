@@ -1,0 +1,1 @@
+export const API_URL: string = "ar-for-education-api.azurewebsites.net"; 
