@@ -36,7 +36,7 @@ export const PolotnoWrapper = () => {
     <Wrapper>
       <PolotnoContainer>
         <SidePanelWrap>
-          <SidePanel store={store} />
+          <SidePanel store={store} defaultSection={"text"} />
         </SidePanelWrap>
         <WorkspaceWrap>
           <Toolbar store={store} />
