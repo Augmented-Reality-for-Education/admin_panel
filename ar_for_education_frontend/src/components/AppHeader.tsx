@@ -53,7 +53,7 @@ const AppHeader: FC<any> = () => {
             variant="contained"
             onClick={async () =>
               postUserDesignHandler(
-                name || "unnamed design",
+                name || "Untitled design",
                 await store.toDataURL()
               )
             }
