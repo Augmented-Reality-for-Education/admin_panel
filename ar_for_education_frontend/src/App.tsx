@@ -1,5 +1,5 @@
 import React from "react";
-import { RecoilRoot } from "recoil";
+// import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 
 import AppHeader from "./components/AppHeader";
@@ -16,13 +16,13 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <RecoilRoot>
-      <PolotnoStoreProvider>
-        <GlobalStyle />
-        <AppHeader />
-        <PolotnoWrapper />
-      </PolotnoStoreProvider>
-    </RecoilRoot>
+    // <RecoilRoot>
+    <PolotnoStoreProvider>
+      <GlobalStyle />
+      <AppHeader />
+      <PolotnoWrapper />
+    </PolotnoStoreProvider>
+    // </RecoilRoot>
   );
 }
 
