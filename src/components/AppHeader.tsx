@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import {
   AppBar,
+  Badge,
   Button,
   Container,
   TextField,
@@ -31,6 +32,7 @@ const StyledTextField = styled(TextField)`
 const AppHeader: FC<any> = () => {
   const { id, store, name, setName } = usePolotnoStore();
   const [buttonToggle, setButtonToggle] = React.useState(false);
+  const [frames, setFrames] = React.useState([] as UserDesign[]);
 
   const postUserDesignHandler = async (name: string, dataURL: string) => {
     const userDesign: UserDesign = { name, dataURL };
@@ -38,19 +40,17 @@ const AppHeader: FC<any> = () => {
     console.log(response);
   };
 
-  let frames: UserDesign[] = [];
-
-  const sequenceHandler = async (name: string) => {
+  const sequenceHandler = async () => {
     setButtonToggle(true);
   };
 
   const addFrameHandler = async (name: string, dataURL: string) => {
     const userDesign: UserDesign = { name, dataURL: dataURL };
-    frames.push(userDesign);
+    setFrames([...frames, userDesign]);
   };
 
-  const saveSequenceHandler = async () => {
-    const userDesignList: UserDesignSequence = { data: frames };
+  const saveSequenceHandler = async (name: string) => {
+    const userDesignList: UserDesignSequence = { name, data: frames };
     const response = await postUserDesignSequence(userDesignList);
     console.log(response);
   };
@@ -70,18 +70,26 @@ const AppHeader: FC<any> = () => {
           />
           {buttonToggle ? (
             <>
+              <Badge
+                badgeContent={frames ? frames.length : null}
+                color="secondary"
+              >
+                <Button
+                  variant="contained"
+                  onClick={async () =>
+                    addFrameHandler(
+                      name || "Untitled sequence",
+                      await store.toDataURL()
+                    )
+                  }
+                >
+                  Add frame
+                </Button>
+              </Badge>
               <Button
                 variant="contained"
-                onClick={async () =>
-                  addFrameHandler(
-                    name || "Untitled sequence",
-                    await store.toDataURL()
-                  )
-                }
+                onClick={() => saveSequenceHandler(name || "Untitled sequence")}
               >
-                Add frame
-              </Button>
-              <Button variant="contained" onClick={() => saveSequenceHandler()}>
                 Save sequence
               </Button>
             </>
@@ -100,9 +108,7 @@ const AppHeader: FC<any> = () => {
               </Button>
               <Button
                 variant="contained"
-                onClick={async () =>
-                  sequenceHandler(name || "Untitled sequence")
-                }
+                onClick={async () => sequenceHandler()}
               >
                 Create animated sequence
               </Button>
