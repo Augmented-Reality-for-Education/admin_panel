@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import {
   AppBar,
   Badge,
+  Box,
   Button,
   Container,
   TextField,
@@ -29,6 +30,10 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
+const StyledButtonWrapper = styled(Button)`
+  margin-right: 10px;
+`;
+
 const AppHeader: FC<any> = () => {
   const { id, store, name, setName } = usePolotnoStore();
   const [buttonToggle, setButtonToggle] = React.useState(false);
@@ -50,8 +55,10 @@ const AppHeader: FC<any> = () => {
   };
 
   const saveSequenceHandler = async (name: string) => {
+    setButtonToggle(false);
     const userDesignList: UserDesignSequence = { name, data: frames };
     const response = await postUserDesignSequence(userDesignList);
+    setFrames([]);
     console.log(response);
   };
 
@@ -68,52 +75,58 @@ const AppHeader: FC<any> = () => {
             placeholder={"Untitled"}
             onChange={(e) => setName(e.target.value)}
           />
-          {buttonToggle ? (
-            <>
-              <Badge
-                badgeContent={frames ? frames.length : null}
-                color="secondary"
-              >
+          <Box>
+            {buttonToggle ? (
+              <>
+                <StyledButtonWrapper>
+                  <Badge
+                    badgeContent={frames ? frames.length : null}
+                    color="secondary"
+                  >
+                    <Button
+                      variant="contained"
+                      onClick={async () =>
+                        addFrameHandler(
+                          name || "Untitled sequence",
+                          await store.toDataURL()
+                        )
+                      }
+                    >
+                      Add frame
+                    </Button>
+                  </Badge>
+                </StyledButtonWrapper>
+                <Button
+                  variant="contained"
+                  onClick={() =>
+                    saveSequenceHandler(name || "Untitled sequence")
+                  }
+                >
+                  Save sequence
+                </Button>
+              </>
+            ) : (
+              <>
                 <Button
                   variant="contained"
                   onClick={async () =>
-                    addFrameHandler(
-                      name || "Untitled sequence",
+                    postUserDesignHandler(
+                      name || "Untitled design",
                       await store.toDataURL()
                     )
                   }
                 >
-                  Add frame
+                  {id ? "Update" : "Save new image"}
                 </Button>
-              </Badge>
-              <Button
-                variant="contained"
-                onClick={() => saveSequenceHandler(name || "Untitled sequence")}
-              >
-                Save sequence
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button
-                variant="contained"
-                onClick={async () =>
-                  postUserDesignHandler(
-                    name || "Untitled design",
-                    await store.toDataURL()
-                  )
-                }
-              >
-                {id ? "Update" : "Save new image"}
-              </Button>
-              <Button
-                variant="contained"
-                onClick={async () => sequenceHandler()}
-              >
-                Create animated sequence
-              </Button>
-            </>
-          )}
+                <Button
+                  variant="contained"
+                  onClick={async () => sequenceHandler()}
+                >
+                  Create animated sequence
+                </Button>
+              </>
+            )}
+          </Box>
         </StyledToolbar>
       </Container>
     </AppBarWrapper>
