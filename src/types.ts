@@ -5,5 +5,5 @@ export type UserDesign = {
 
 export type UserDesignSequence= {
     name?: string;
-    data: UserDesign[]
+    images?: UserDesign[];
 };

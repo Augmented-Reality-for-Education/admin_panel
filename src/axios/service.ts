@@ -4,7 +4,7 @@ import { API_URL } from '../constants';
 
 export const postUserDesign = async (userDesign: UserDesign) => {
     try {
-        const response = await axios.post<UserDesign>(`${API_URL}`, userDesign);
+        const response = await axios.post<UserDesign>(`${API_URL}/Image`, userDesign);
         return response.data || [];
     }
     catch (error) {
@@ -14,7 +14,7 @@ export const postUserDesign = async (userDesign: UserDesign) => {
 
 export const postUserDesignSequence = async (userDesignSequence: UserDesignSequence) => {
     try {
-        const response = await axios.post<UserDesignSequence>(`${API_URL}`, userDesignSequence);
+        const response = await axios.post<UserDesignSequence>(`${API_URL}/Sequence`, userDesignSequence);
         return response.data || [];
     }
     catch (error) {

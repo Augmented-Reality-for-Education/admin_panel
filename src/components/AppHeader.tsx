@@ -56,7 +56,7 @@ const AppHeader: FC<any> = () => {
 
   const saveSequenceHandler = async (name: string) => {
     setButtonToggle(false);
-    const userDesignList: UserDesignSequence = { name, data: frames };
+    const userDesignList: UserDesignSequence = { name, images: frames };
     const response = await postUserDesignSequence(userDesignList);
     setFrames([]);
     console.log(response);
