@@ -3,6 +3,6 @@ export type UserDesign = {
     dataURL?: string;
 };
 
-export type UserDesignApiData = {
+export type UserDesignSequence= {
     data: UserDesign[]
 };
