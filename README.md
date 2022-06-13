@@ -2,6 +2,8 @@
 
 This repository contains the admin panel for the ARDENT framework. Use it with the ARDENT Web API to create all kinds of models which can be inspected in the mobile application.
 
+Check out the [video demo](https://youtu.be/GXYz2oXtxzo).
+
 ## Getting Started
 
 This application is a simple React application bootstrapped with Create React App (CRA) and should be familiar to React users.
